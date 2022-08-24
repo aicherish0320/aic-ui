@@ -1,8 +1,18 @@
 <template>
-  <div class="ac-button" :class="btnClasses">
-    <template v-if="icon"><AcIcon :icon="icon" class="icon"></AcIcon></template>
+  <button
+    class="ac-button"
+    :class="btnClasses"
+    :disabled="loading"
+    @click="$emit('click', $event)"
+  >
+    <template v-if="icon && !loading">
+      <AcIcon :icon="icon" class="icon"> </AcIcon
+    ></template>
+    <template v-if="loading">
+      <AcIcon icon="loading" class="icon"></AcIcon>
+    </template>
     <span v-if="$slots.default"><slot></slot></span>
-  </div>
+  </button>
 </template>
 
 <script>
@@ -39,6 +49,10 @@ export default {
         }
         return true
       }
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -72,6 +86,7 @@ $active-color: #3a8ee6;
   font-size: $font-size;
   cursor: pointer;
   padding: 12px 20px;
+  vertical-align: middle;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -160,6 +175,9 @@ $active-color: #3a8ee6;
       margin-right: 5px;
       margin-left: 0;
     }
+  }
+  &[disabled] {
+    cursor: not-allowed;
   }
 }
 </style>

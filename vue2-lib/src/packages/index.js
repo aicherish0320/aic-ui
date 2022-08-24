@@ -1,7 +1,8 @@
 import Button from './button'
 import Icon from './icon'
+import ButtonGroup from './button/src/ButtonGroup.vue'
 
-const components = [Button, Icon]
+const components = [Button, ButtonGroup, Icon]
 
 const install = (Vue) => {
   components.forEach((component) => {
