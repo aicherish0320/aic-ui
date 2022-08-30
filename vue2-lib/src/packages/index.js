@@ -8,6 +8,7 @@ import Main from './container/Main.vue'
 import Header from './container/Header.vue'
 import Aside from './container/Aside.vue'
 import Footer from './container/Footer.vue'
+import AcInput from './input'
 
 const components = [
   Button,
@@ -19,7 +20,8 @@ const components = [
   Main,
   Header,
   Aside,
-  Footer
+  Footer,
+  AcInput
 ]
 
 const install = (Vue) => {
