@@ -9,6 +9,7 @@ import Header from './container/Header.vue'
 import Aside from './container/Aside.vue'
 import Footer from './container/Footer.vue'
 import AcInput from './input'
+import AcUpload from './upload/Upload.vue'
 
 const components = [
   Button,
@@ -21,7 +22,8 @@ const components = [
   Header,
   Aside,
   Footer,
-  AcInput
+  AcInput,
+  AcUpload
 ]
 
 const install = (Vue) => {
