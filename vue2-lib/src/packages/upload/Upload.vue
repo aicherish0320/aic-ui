@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import ajax from './ajax'
 export default {
   name: 'AcUpload',
   props: {
@@ -45,12 +46,17 @@ export default {
     onSuccess: Function,
     onError: Function,
     onProgress: Function,
-    beforeUpload: Function
+    beforeUpload: Function,
+    httpRequest: {
+      type: Function,
+      default: ajax
+    }
   },
   data() {
     return {
       tempIndex: 1,
-      files: []
+      files: [],
+      reqs: {}
     }
   },
   watch: {
@@ -89,7 +95,29 @@ export default {
       // 上传文件变化了
       this.onChange && this.onChange(file)
     },
-    post(rawFile) {},
+    post(rawFile) {
+      // 调用 httpRequest 方法
+      // 需要整合一下参数 调用 ajax，需要传递参数，处理上传到整个流程
+      // 这里可能 稍后上传到时候 会后悔，中止 ajax
+      const uid = rawFile.uid
+
+      const options = {
+        file: rawFile,
+        filename: rawFile.name,
+        action: this.action,
+        onProgress: (ev) => {},
+        onSuccess: (ev) => {},
+        onError: (ev) => {}
+      }
+
+      // req 就是当前的请求
+      let req = this.httpRequest(options)
+      this.reqs[uid] = req
+      // 允许用户使用的是 promise 的 ajax
+      if (req && req.then) {
+        req.then(options.onSuccess, options.onError)
+      }
+    },
     upload(rawFile) {
       // 上传文件
       // 先判断这个文件是否能够上传 没有任何限制直接上传即可
