@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <AcDatePicker v-model="value1"></AcDatePicker>
+    <hr />
+    <!-- <AcDateRangePicker v-model="value2"></AcDateRangePicker> -->
     <!-- 
       on-exceed：如果超出限制后 会执行此方法
       on-change：如果当前上传文件的状态发生变化的时候 会触发，如果用户选择了文件，上传成功、失败
@@ -29,6 +32,8 @@ export default {
   name: 'App',
   data() {
     return {
+      value1: new Date(),
+      value2: [],
       accept: 'image/jpeg',
       fileList: [
         {

@@ -10,6 +10,8 @@ import Aside from './container/Aside.vue'
 import Footer from './container/Footer.vue'
 import AcInput from './input'
 import AcUpload from './upload/Upload.vue'
+import DatePicker from './date-picker/DatePicker.vue'
+import DateRangePicker from './date-picker/DateRangePicker.vue'
 
 const components = [
   Button,
@@ -23,7 +25,9 @@ const components = [
   Aside,
   Footer,
   AcInput,
-  AcUpload
+  AcUpload,
+  DatePicker,
+  DateRangePicker
 ]
 
 const install = (Vue) => {
